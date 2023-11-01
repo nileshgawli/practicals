@@ -22,8 +22,7 @@ const Faq = () => {
             <code>
               <Items
                 question={"Page Rank"}
-                answer={
-              `
+                answer={`
               import java.util.*;
               import java.io.*;
               public class PageRank {
@@ -124,8 +123,7 @@ const Faq = () => {
             <code>
               <Items
                 question={"Discretization & Visualization"}
-                answer={
-              `
+                answer={`
               def discretize_and_smooth(data, number_of_bins):
 
     sorted_data = sorted(data)
@@ -194,8 +192,7 @@ plt.show()
             <code>
               <Items
                 question={"NAIVE BAYESIAN"}
-                answer={
-              `
+                answer={`
               import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
@@ -244,8 +241,7 @@ print(prediction)`}
             <code>
               <Items
                 question={"KMEAN"}
-                answer={
-              `
+                answer={`
               import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -384,9 +380,85 @@ public class KMeans {
           <pre>
             <code>
               <Items
+                question={"KMEAN SHORT PROGRAM"}
+                answer={`
+                public class KMeansClustering {
+
+                  public static void main(String args[]) {
+                      int arr[] = {2, 4, 10, 12, 3, 20, 30, 11, 25};    // initial data
+                      int i, m1, m2, a, b, n = 0;
+                      boolean flag;
+                      float sum1, sum2;
+                      a = arr[0];
+                      b = arr[1];
+                      m1 = a;
+                      m2 = b;
+                      int cluster1[] = new int[arr.length], cluster2[] = new int[arr.length];
+                      do {
+                          sum1 = 0;
+                          sum2 = 0;
+                          cluster1 = new int[arr.length];
+                          cluster2 = new int[arr.length];
+                          n++;
+                          int k = 0, j = 0;
+                          for (i = 0; i < arr.length; i++) {
+                              if (Math.abs(arr[i] - m1) <= Math.abs(arr[i] - m2)) {
+                                  cluster1[k] = arr[i];
+                                  k++;
+                              } else {
+                                  cluster2[j] = arr[i];
+                                  j++;
+                              }
+                          }
+                          System.out.println();
+                          for (i = 0; i < k; i++) {
+                              sum1 = sum1 + cluster1[i];
+                          }
+                          for (i = 0; i < j; i++) {
+                              sum2 = sum2 + cluster2[i];
+                          }
+                          //printing Centroids/Means\
+                          System.out.println("m1=" + m1 + "   m2=" + m2);
+                          a = m1;
+                          b = m2;
+                          m1 = Math.round(sum1 / k);
+                          m2 = Math.round(sum2 / j);
+                          flag = !(m1 == a && m2 == b);
+
+                          System.out.println("After iteration " + n + " , cluster 1 :\n");    //printing the clusters of each iteration
+                          for (i = 0; i < cluster1.length; i++) {
+                              System.out.print(cluster1[i] + "\t");
+                          }
+
+                          System.out.println("\n");
+                          System.out.println("After iteration " + n + " , cluster 2 :\n");
+                          for (i = 0; i < cluster2.length; i++) {
+                              System.out.print(cluster2[i] + "\t");
+                          }
+
+                      } while (flag);
+
+                      System.out.println("Final cluster 1 :\n");            // final clusters
+                      for (i = 0; i < cluster1.length; i++) {
+                          System.out.print(cluster1[i] + "\t");
+                      }
+
+                      System.out.println();
+                      System.out.println("Final cluster 2 :\n");
+                      for (i = 0; i < cluster2.length; i++) {
+                          System.out.print(cluster2[i] + "\t");
+                      }
+                  }
+
+                  }`}
+              />
+            </code>
+          </pre>
+          <pre>
+            <code>
+              <Items
                 question={"STAR, SNOWFLAKE SCHEMA"}
-                answer={
-              `
+                answer={`
               CREATE TABLE DEPARTMENTS (
                 dept_id number primary key,
                 dept_name varchar(20),
@@ -461,8 +533,7 @@ public class KMeans {
             <code>
               <Items
                 question={"OLAP Operations"}
-                answer={
-              `
+                answer={`
               ROLLUP-
               SELECT account_type, SUM (balance) AS TOTAL_BALANCE FROM ACCOUNTS GROUP BY ROLLUP (account_type)
 
@@ -480,7 +551,123 @@ public class KMeans {
               />
             </code>
           </pre>
+          <pre>
+            <code>
+              <Items
+                question={"OLAP Script"}
+                answer={`
+                create table CLASS_INFO(
+                  class_id int primary key,
+                  class_name varchar(30),
+                 address varchar(50)
+                 );
+                 create table CR(
+                  cr_id int primary key,
+                  cr_name varchar(30),
+                 cr_contno int,
+                  cr_mail varchar(30)
+                 );
+                 create table HOD(
+                  hod_id int primary key,
+                  hod_name varchar(30),
+                 hod_address varchar(50),
+                 hod_contno int,
+                 hod_mail varchar(30)
+                 );
+                 create table TEACHER(
+                  teacher_id int primary key,
+                  teacher_name varchar(30),
+                 teacher_contno int,
+                 teacher_address varchar(50),
+                 teacher_exp varchar(30)
+                 );
+                 create table STUDENT(
+                  student_id int primary key,
+                  student_name varchar(30),
+                 student_address varchar(50),
+                 student_contno int
+                 );
+                 create table CLASS_TABLE(
+                 class_id int,
+                  hod_id int,
+                  teacher_id int,
+                  foreign key(class_id) references CLASS_INFO(class_id),
+                  foreign key(hod_id) references HOD(hod_id),
+                  foreign key(teacher_id) references TEACHER(teacher_id)
+                 );
+                 insert into CLASS_INFO values('458', 'COMPS', 'Mumbai');
+                 insert into CLASS_INFO values('759', 'EXTC', 'Nerul');
+                 insert into CLASS_INFO values('366', 'AIDS', 'Seawoods');
+                 insert into CLASS_INFO values('476', 'MECH', 'Kharkopar');
+                 insert into CR values('126', 'Rohit', '8766543876', 'rohit12@gmail.com');
+                 insert into CR values ('434', 'Ashish', '8766556876', 'ash44@gmail.com');
+                 insert into CR values('553', 'Atharv', '8766654876', 'ath66@gmail.com');
+                 insert into CR values('67', 'Rakesh', '8766556477', 'rakesh20@gmail.com');
+                 insert into HOD values('332', 'Varun', 'Manor', '9865453542','var33@gmail.com');
+                 insert into HOD values('352', 'Harsh', 'Wada', '7865453542','harsh56@gmail.com');
+                 insert into HOD values('42', 'Avinash', 'Palghar', '8865453542','avi45@gmail.com');
+                 insert into HOD values('98', 'Nikhil', 'Panvel', '7855453542','nikhil76@gmail.com');
+                 insert into TEACHER values('23', 'Mathan', '7654874432', 'Kharghar', 'Nutritionist');
+                 insert into TEACHER values('432', 'Neel', '9854874432', 'Kalwa', 'cardio');
+                 insert into TEACHER values('12', 'pranit', '7784874432', 'Thane', 'calistehnics');
+                 insert into TEACHER values('22', 'Saurabh', '7654324432', 'Airoli', 'cardio');
+                 insert into STUDENT values('534', 'Mayur', 'Nerul', '7655439821');
+                 insert into STUDENT values('1', 'Jay', 'Vashi', '7656439821');
+                 insert into STUDENT values('3', 'Aakash', 'Sanapada', '9345439821');
+                 insert into STUDENT values('9', 'Pritesh', 'Virar', '8855439821');
+                 insert into CLASS_TABLE values('458', '332', '23');
+                 insert into CLASS_TABLE values('759', '352', '23');
+                 insert into CLASS_TABLE values('366', '42', '23');
+                 insert into CLASS_TABLE values('476', '98', '23');
+                 select * from CLASS_INFO;
+                 select * from CR;
+                 select * from HOD;
+                 select * from TEACHER;
+                 select * from STUDENT;
+                 select * from CLASS_TABLE;
 
+
+                 1 . Slice Operation:
+                 select class_id
+                 from CLASS_TABLE
+                 where HOD_id ='332'
+
+                 2. Dice Operation:
+                 select class_id
+                 from CLASS_TABLE
+                 where hod_id ='332'
+                 and teacher_id = '23'
+
+                 3. Roll- Up Operation:
+                 select class_id, sum(hod_id) as hod_id
+                 from CLASS_TABLE
+                 group by class_id
+
+                 4. Drill- Down Operation:
+                 select class_id, teacher_id from CLASS_TABLE
+
+                 5. Drill- Across Operation:
+                 select c.class_id, c.hod_id, c.teacher_id , h.hod_name
+                 from CLASS_TABLE c
+                 join HOD h on c.hod_id = h.hod_id
+                 where c.hod_id ='42'
+
+                 6.PIVOT:
+                 select *
+                 from (
+                 select h.hod_id, c.class_id
+                  from CLASS_TABLE c
+                  inner join HOD h on c.hod_id = h.hod_id
+
+                 )
+                 PIVOT(
+                  sum(class_id)
+                  for hod_id in ('332' as "Tanjiro", '352' as "Nezuko", '42' as "Inosuke", '98' as "Zenistu" )
+                 )
+              `}
+              />
+            </code>
+          </pre>
         </Accordion>
       </Box>
     </>
